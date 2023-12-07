@@ -15,6 +15,8 @@ class Singleton
 
 template <typename T> T& Instance();
 
+template <typename T> bool IsExist();
+
 template <typename T> void Delete();
 
 }
@@ -26,6 +28,8 @@ class SingletonImpl
 {
 	friend T& Instance<T>();
 
+	friend bool IsExist<T>();
+
 	friend void Delete<T>();
 
 public:
@@ -33,8 +37,6 @@ public:
 	static void InstancePost();
 
 	static void DeletePre();
-
-	static bool Is();
 
 private:
 
@@ -44,13 +46,16 @@ private:
 
 	SingletonImpl<T> operator=(const SingletonImpl<T>& aCopy) = delete;
 
-	static T& Instance();
+	static T& _Instance();
 
-	static void InstanceImpl();
+	static void _InstanceImpl();
 
-	static Singleton<T>*& rpData();
+	static Singleton<T>*& _pData();
 
-	static void Delete();
+	static void _Delete();
+
+	static bool _IsExist();
+
 };
 }
 

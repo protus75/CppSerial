@@ -7,7 +7,7 @@ template <typename T> class Singleton;
 
 template <typename T> T& Instance();
 
-template <typename T> T& Delete();
+template <typename T> void Delete();
 
 template <typename T> class SingletonImpl;
 }
