@@ -1,27 +1,32 @@
 # Serial
 
 Serialize/Deserialize user defined data structures of native types and `stl` containers 
-with just a few lines of code.
+in a few simple steps with minial lines of code.
+1. Obtain Data object
+1. Obtain C++ Stream object
+1. Select Format and Read/Write Data using Stream 
 
 ```
 using namespace std;
+using namespace serial;
+
 auto data = map<string, vector<map<int, set<float>>>>();
 
 stringstream s;
 
-auto writer = serial::Writer(serial::format::TYPE::TEXT, s);
-writer.Put(data); 
+Write(format::TYPE::TEXT, data, s);
 
-auto reader = serial::Reader(serial::format::TYPE::TEXT, s);
-reader.Get(data); 
+Read(format::TYPE::TEXT, data, s); 
 ```
 
 ## Overview
 
 * Simple approach to describe data structure, supporting POD and user defined classes
-* Out of box support of common `stl` containers and easily extended for custom containers
+* Out of box support of common `stl` containers and easily extended for other containers
 * Copyless design to prevent unnecessary overhead
-* Data structure definition is decoupled from file format logic, basic formats provided and easily extended for custom formats
+* Data structure definition is decoupled from file format logic
+  * basic formats provided
+  * easily extended for additional formats
 
 
 ## Examples
